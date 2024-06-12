@@ -1,14 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Event Management App</title>
-    <link href="styles.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Événement</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 30px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .image-upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        .image-upload-wrapper:hover::before {
+            content: "Cliquez ou déposez une image ici";
+            color: #007bff;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+        }
+        .image-upload-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-upload-wrapper input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        #map {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Event Management App</h1>
-<div id="content"></div>
-<script src="app.js"></script>
+    <div class="container">
+        <h2 class="text-center mb-4">Créer un Événement</h2>
+        <form>
+            <div class="form-group">
+                <label for="eventImage">Image de l'Événement</label>
+                <div class="image-upload-wrapper" id="imageUploadWrapper">
+                    <img id="imagePreview" src="https://via.placeholder.com/600x300?text=Image+de+l'%C3%A9v%C3%A9nement" alt="Prévisualisation de l'image">
+                    <input type="file" id="eventImage" accept="image/*" onchange="previewImage(event)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="eventVisibility">Visibilité de l'Événement</label>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="eventVisibility">
+                    <label class="custom-control-label" for="eventVisibility">Privé / Public</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="eventName">Nom de l'Événement</label>
+                <input type="text" class="form-control" id="eventName" placeholder="Entrez le nom de l'événement" required>
+            </div>
+            <div class="form-group">
+                <label for="eventDescription">Description de l'Événement</label>
+                <textarea class="form-control" id="eventDescription" rows="4" placeholder="Décrivez l'événement" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="eventMaxParticipants">Nombre Maximum de Participants</label>
+                <input type="number" class="form-control" id="eventMaxParticipants" placeholder="Entrez le nombre maximum de participants" required>
+            </div>
+            <div class="form-group">
+                <label for="eventDate">Date de l'Événement</label>
+                <input type="date" class="form-control" id="eventDate" required>
+            </div>
+            <div class="form-group">
+                <label for="eventTime">Heure de l'Événement</label>
+                <input type="time" class="form-control" id="eventTime" required>
+            </div>
+            <div class="form-group">
+                <label for="eventPrice">Prix de l'Événement</label>
+                <input type="number" class="form-control" id="eventPrice" placeholder="Entrez le prix de l'événement (laissez vide pour gratuit)">
+            </div>
+            <div class="form-group">
+                <label for="eventLocation">Lieu de l'Événement</label>
+                <div id="map"></div>
+                <input type="hidden" id="eventLocationLat" required>
+                <input type="hidden" id="eventLocationLng" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Créer l'Événement</button>
+        </form>
+    </div>
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap" async defer></script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function() {
+                var dataURL = reader.result;
+                var imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        // Drag & Drop functionality
+        var imageUploadWrapper = document.getElementById('imageUploadWrapper');
+        imageUploadWrapper.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            imageUploadWrapper.classList.add('dragging');
+        });
+
+        imageUploadWrapper.addEventListener('dragleave', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            imageUploadWrapper.classList.remove('dragging');
+        });
+
+        imageUploadWrapper.addEventListener('drop', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            imageUploadWrapper.classList.remove('dragging');
+            var files = event.dataTransfer.files;
+            if (files.length > 0) {
+                var input = document.getElementById('eventImage');
+                input.files = files;
+                previewImage({target: input});
+            }
+        });
+
+        // Google Maps
+        var map;
+        var marker;
+
+        function initMap() {
+            var defaultLocation = {lat: 48.8566, lng: 2.3522}; // Paris coordinates
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
+                zoom: 13
+            });
+
+            marker = new google.maps.Marker({
+                position: defaultLocation,
+                map: map,
+                draggable: true
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function(event) {
+                document.getElementById('eventLocationLat').value = event.latLng.lat();
+                document.getElementById('eventLocationLng').value = event.latLng.lng();
+            });
+
+            google.maps.event.addListener(map, 'click', function(event) {
+                marker.setPosition(event.latLng);
+                document.getElementById('eventLocationLat').value = event.latLng.lat();
+                document.getElementById('eventLocationLng').value = event.latLng.lng();
+            });
+        }
+    </script>
 </body>
 </html>
