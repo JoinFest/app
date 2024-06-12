@@ -3,6 +3,7 @@ import {UserService} from '../../application/services/user.service';
 import {CreateUserDto} from '../../application/dto/create-user.dto';
 import {User} from '../../domain/models/user.model';
 import {ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ObjectId} from "bson";
 
 @ApiTags('users')
 @Controller('users')
@@ -21,11 +22,11 @@ export class UserController {
 
     @Get(':id')
     @ApiOperation({summary: 'Get user by ID'})
-    @ApiParam({name: 'id', type: Number})
+    @ApiParam({name: 'id', type: String})
     @ApiResponse({status: 200, description: 'User found'})
     @ApiResponse({status: 404, description: 'User not found'})
-    async findById(@Param('id') id: number): Promise<User> {
-        return await this.userService.findById(Number(id));
+    async findById(@Param('id') id: string): Promise<User> {
+        return await this.userService.findById(new ObjectId(id));
     }
 
     @Get('name/:name')
@@ -35,5 +36,12 @@ export class UserController {
     @ApiResponse({status: 404, description: 'User not found'})
     async findByName(@Param('name') name: string): Promise<User> {
         return await this.userService.findByName(name);
+    }
+
+    @Get()
+    @ApiOperation({summary: 'Get all users'})
+    @ApiResponse({status: 200, description: 'Users found'})
+    async findAll(): Promise<User[]> {
+        return await this.userService.findAll();
     }
 }

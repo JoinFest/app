@@ -2,6 +2,7 @@ import {Injectable, NotFoundException} from '@nestjs/common';
 import {CreateUserDto} from '../dto/create-user.dto';
 import {User} from '../../domain/models/user.model';
 import {UserRepository} from '../../domain/repositories/user.repository';
+import {ObjectId} from "bson";
 
 @Injectable()
 export class UserService {
@@ -10,7 +11,7 @@ export class UserService {
 
     async create(createUserDto: CreateUserDto): Promise<User> {
         const user = new User(
-            Date.now(), // ID generation logic could be different
+            new ObjectId(),
             createUserDto.email,
             createUserDto.password,
             createUserDto.name,
@@ -18,7 +19,7 @@ export class UserService {
         return await this.userRepository.create(user);
     }
 
-    async findById(id: number): Promise<User> {
+    async findById(id: ObjectId): Promise<User> {
         const user = await this.userRepository.findById(id);
         if (!user) {
             throw new NotFoundException(`User with ID ${id} not found`);
@@ -40,6 +41,10 @@ export class UserService {
             throw new NotFoundException(`User with email ${email} not found`);
         }
         return user;
+    }
+
+    async findAll(): Promise<User[]> {
+        return await this.userRepository.findAll();
     }
 
 }
