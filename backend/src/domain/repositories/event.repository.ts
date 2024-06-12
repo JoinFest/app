@@ -2,6 +2,7 @@ import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import {Event} from '../models/event.model';
 import {Injectable} from '@nestjs/common';
+import {ObjectId} from 'bson';
 
 @Injectable()
 export class EventRepository {
@@ -13,7 +14,7 @@ export class EventRepository {
         return await createdEvent.save();
     }
 
-    async findById(id: number): Promise<Event> {
+    async findById(id: ObjectId): Promise<Event> {
         return await this.eventModel.findById(id).exec();
     }
 
