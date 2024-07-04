@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Fil d'Actualité - Gestion d'Événements</title>
+    <title>Créer un Événement - Gestion d'Événements</title>
 </head>
 <body>
     <header>
@@ -18,7 +17,6 @@
                 <li><a href="feed.html">Fil d'Actualité</a></li>
                 <li><a href="friends.html">Mes Amis</a></li>
                 <li><a href="tickets.html">Mes Tickets</a></li>
-                <li><a href="create_event.html">Créer un Événement</a></li>
             </ul>
             <div class="social-links">
                 <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
@@ -28,17 +26,23 @@
         </nav>
     </header>
     <main>
-        <section class="news-feed">
-            <h2>Fil d'Actualité</h2>
-            <div class="news-grid">
-                <!-- Répétez ce bloc pour chaque actualité -->
-                <div class="news-item">
-                    <img src="assets/images/news1.jpg" alt="Actualité 1">
-                    <h3>Actualité 1</h3>
-                    <p>Texte descriptif de l'actualité 1...</p>
-                </div>
-                <!-- Fin du bloc -->
-            </div>
+        <section class="create-event">
+            <h2>Créer un Nouvel Événement</h2>
+            <form>
+                <label for="event-name">Nom de l'événement:</label>
+                <input type="text" id="event-name" name="event-name" required>
+                
+                <label for="event-date">Date:</label>
+                <input type="date" id="event-date" name="event-date" required>
+                
+                <label for="event-location">Lieu:</label>
+                <input type="text" id="event-location" name="event-location" required>
+                
+                <label for="event-description">Description:</label>
+                <textarea id="event-description" name="event-description" required></textarea>
+                
+                <button type="button" onclick="createEvent()">Créer l'événement</button>
+            </form>
         </section>
     </main>
     <footer>

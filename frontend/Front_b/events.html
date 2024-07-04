@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Événements - Gestion d'Événements</title>
 </head>
@@ -16,6 +17,8 @@
                 <li><a href="events.html">Événements</a></li>
                 <li><a href="feed.html">Fil d'Actualité</a></li>
                 <li><a href="friends.html">Mes Amis</a></li>
+                <li><a href="tickets.html">Mes Tickets</a></li>
+                <li><a href="create_event.html">Créer un Événement</a></li>
             </ul>
             <div class="social-links">
                 <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
@@ -28,33 +31,29 @@
         <section class="event-list">
             <h2>Liste des Événements</h2>
             <div class="event-grid">
-                <!-- Ajoutez des vignettes d'événements ici -->
-                <!-- Exemple de vignette d'événement -->
+                <!-- Répétez ce bloc pour chaque événement -->
                 <div class="event-item">
                     <img src="assets/images/event1.png" alt="Événement 1">
                     <h3>Événement 1</h3>
                     <p>Date: 15 Juillet 2024</p>
                     <p>Lieu: Paris</p>
-                    <button onclick="buyTicket()">Acheter un ticket</button>
-                    <button onclick="inviteFriends()">Inviter des amis</button>
-                    <button onclick="showEventDetails('event1')">Détails</button>
+                    <button data-action="buyTicket" data-id="event1">Acheter un ticket</button>
+                    <button data-action="inviteFriends" data-id="event1">Inviter des amis</button>
+                    <button data-action="showEventDetails" data-id="event1">Détails</button>
                 </div>
-                <!-- Ajoutez plus de vignettes selon les besoins -->
-                <div class="event-item">
-                    <img src="assets/images/event2.png" alt="Événement 1">
-                    <h3>Événement 1</h3>
-                    <p>Date: 26 Juillet 2024</p>
-                    <p>Lieu: lyon</p>
-                    <button onclick="buyTicket()">Acheter un ticket</button>
-                    <button onclick="inviteFriends()">Inviter des amis</button>
-                    <button onclick="showEventDetails('event2')">Détails</button>
-                </div>
+                <!-- Fin du bloc -->
             </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Gestion d'Événements. Tous droits réservés.</p>
     </footer>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

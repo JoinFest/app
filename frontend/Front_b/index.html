@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Accueil - Gestion d'Événements</title>
 </head>
@@ -16,22 +17,24 @@
                 <li><a href="events.html">Événements</a></li>
                 <li><a href="feed.html">Fil d'Actualité</a></li>
                 <li><a href="friends.html">Mes Amis</a></li>
+                <li><a href="tickets.html">Mes Tickets</a></li>
+                <li><a href="create_event.html">Créer un Événement</a></li>
             </ul>
             <div class="social-links">
                 <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
-                <a href="#"><img src="assets/images/x.png" alt="Twitter"></a>
+                <a href="#"><img src="assets/images/twitter.png" alt="Twitter"></a>
                 <a href="#"><img src="assets/images/instagram.png" alt="Instagram"></a>
             </div>
         </nav>
     </header>
     <main>
-        <section class="banner" style="background-image: url('assets/images/banner.png');">
-            <h1></h1>
+        <section class="banner">
+            <h1>Bienvenue sur notre site de gestion d'événements</h1>
             <button onclick="window.location.href='events.html'">Découvrir les événements</button>
-        </section>        
+        </section>
         <section class="presentation">
-            <h2>Notre Service</h2>
-            <p>Organisez et participez à des événements entre amis, particuliers et professionnels.</p>
+            <h2>Pourquoi nous choisir ?</h2>
+            <p>Découvrez les meilleurs événements et invitez vos amis pour des moments inoubliables !</p>
         </section>
         <section class="featured-events">
             <h2>Événements à la Une</h2>
@@ -41,26 +44,40 @@
                     <h3>Événement 1</h3>
                     <p>Date: 15 Juillet 2024</p>
                     <p>Lieu: Paris</p>
-                    <button onclick="buyTicket()">Acheter un ticket</button>
-                    <button onclick="inviteFriends()">Inviter des amis</button>
-                    <button onclick="showEventDetails('event1')">Détails</button>
+                    <button data-action="buyTicket" data-id="event1">Acheter un ticket</button>
+                    <button data-action="inviteFriends" data-id="event1">Inviter des amis</button>
+                    <button data-action="showEventDetails" data-id="event1">Détails</button>
                 </div>
                 <div class="event-item">
-                    <img src="assets/images/event2.png" alt="Événement 1">
-                    <h3>Événement 1</h3>
-                    <p>Date: 15 Juillet 2024</p>
-                    <p>Lieu: Paris</p>
-                    <button onclick="buyTicket()">Acheter un ticket</button>
-                    <button onclick="inviteFriends()">Inviter des amis</button>
-                    <button onclick="showEventDetails('event2')">Détails</button>
+                    <img src="assets/images/event2.png" alt="Événement 2">
+                    <h3>Événement 2</h3>
+                    <p>Date: 20 Août 2024</p>
+                    <p>Lieu: Lyon</p>
+                    <button data-action="buyTicket" data-id="event2">Acheter un ticket</button>
+                    <button data-action="inviteFriends" data-id="event2">Inviter des amis</button>
+                    <button data-action="showEventDetails" data-id="event2">Détails</button>
                 </div>
-                <!-- Ajoutez plus d'événements ici -->
+                <div class="event-item">
+                    <img src="assets/images/event3.png" alt="Événement 3">
+                    <h3>Événement 3</h3>
+                    <p>Date: 5 Septembre 2024</p>
+                    <p>Lieu: Marseille</p>
+                    <button data-action="buyTicket" data-id="event3">Acheter un ticket</button>
+                    <button data-action="inviteFriends" data-id="event3">Inviter des amis</button>
+                    <button data-action="showEventDetails" data-id="event3">Détails</button>
+                </div>
             </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Gestion d'Événements. Tous droits réservés.</p>
     </footer>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
