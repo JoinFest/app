@@ -47,8 +47,7 @@ nav .logo img {
 }
 
 .banner {
-    background-size: cover;
-    background-position: center;
+    background: url('assets/images/banner.jpg') no-repeat center center/cover;
     color: #fff;
     text-align: center;
     padding: 100px 20px;
@@ -74,30 +73,29 @@ nav .logo img {
     padding: 0 20px;
 }
 
-.event-grid, .news-grid, .friend-grid, .ticket-grid {
+.favorite-events {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
 }
 
-.event-item, .news-item, .friend-item, .ticket-item {
+.event-item {
     background: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: all 0.3s ease;
-    width: calc(33.333% - 20px);
+    flex: 1;
 }
 
-.event-item img, .news-item img, .friend-item img, .ticket-item img {
+.event-item img {
     max-width: 100%;
     border-radius: 5px;
     height: 150px;
     object-fit: cover;
 }
 
-.event-item:hover, .news-item:hover, .friend-item:hover, .ticket-item:hover {
+.event-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
@@ -115,7 +113,25 @@ footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
+    position: relative;
+}
+
+.social-footer-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.social-footer-links a {
+    margin: 0 10px;
+    height: 30px;
+}
+
+.social-footer-links img {
+    height: 30px;
+    width: 30px;
+    filter: invert(100%);
 }
 
 .modal {
@@ -169,11 +185,11 @@ footer {
         align-items: center;
     }
 
-    .event-grid, .news-grid, .friend-grid, .ticket-grid {
+    .favorite-events {
         flex-direction: column;
     }
 
-    .event-item, .news-item, .friend-item, .ticket-item {
+    .event-item {
         width: 100%;
     }
 }
