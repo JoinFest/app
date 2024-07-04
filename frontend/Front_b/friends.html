@@ -26,25 +26,45 @@
         </nav>
     </header>
     <main>
+        <section class="favorite-friends">
+            <h2>Amis Favoris</h2>
+            <div class="favorites">
+                <div class="favorite-item">
+                    <img src="assets/images/friend1.jpg" alt="Ami 1">
+                    <h3>Ami 1</h3>
+                </div>
+                <div class="favorite-item">
+                    <img src="assets/images/friend2.jpg" alt="Ami 2">
+                    <h3>Ami 2</h3>
+                </div>
+                <div class="favorite-item">
+                    <img src="assets/images/friend3.jpg" alt="Ami 3">
+                    <h3>Ami 3</h3>
+                </div>
+            </div>
+        </section>
         <section class="friend-list">
             <h2>Mes Amis</h2>
-            <div class="friend-item">
-                <img src="assets/images/friend1.jpg" alt="Ami 1">
-                <h3>Ami 1</h3>
-                <button onclick="viewProfile('friend1')">Voir Profil</button>
-                <button onclick="inviteToEvent('friend1')">Inviter à un événement</button>
-            </div>
-            <div class="friend-item">
-                <img src="assets/images/friend2.jpg" alt="Ami 2">
-                <h3>Ami 2</h3>
-                <button onclick="viewProfile('friend2')">Voir Profil</button>
-                <button onclick="inviteToEvent('friend2')">Inviter à un événement</button>
-            </div>
-            <div class="friend-item">
-                <img src="assets/images/friend3.jpg" alt="Ami 3">
-                <h3>Ami 3</h3>
-                <button onclick="viewProfile('friend3')">Voir Profil</button>
-                <button onclick="inviteToEvent('friend3')">Inviter à un événement</button>
+            <div class="friends-grid">
+                <div class="friend-item">
+                    <img src="assets/images/friend1.jpg" alt="Ami 1">
+                    <h3>Ami 1</h3>
+                    <button onclick="viewProfile('friend1')">Voir Profil</button>
+                    <button onclick="inviteToEvent('friend1')">Inviter à un événement</button>
+                </div>
+                <div class="friend-item">
+                    <img src="assets/images/friend2.jpg" alt="Ami 2">
+                    <h3>Ami 2</h3>
+                    <button onclick="viewProfile('friend2')">Voir Profil</button>
+                    <button onclick="inviteToEvent('friend2')">Inviter à un événement</button>
+                </div>
+                <div class="friend-item">
+                    <img src="assets/images/friend3.jpg" alt="Ami 3">
+                    <h3>Ami 3</h3>
+                    <button onclick="viewProfile('friend3')">Voir Profil</button>
+                    <button onclick="inviteToEvent('friend3')">Inviter à un événement</button>
+                </div>
+                <!-- Add more friends here -->
             </div>
         </section>
     </main>

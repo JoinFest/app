@@ -1,5 +1,4 @@
-/* style.css */
-
+/* General styles for the entire website */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f0f2f5;
@@ -67,7 +66,7 @@ nav .logo img {
     cursor: pointer;
 }
 
-.presentation, .featured-events, .event-list, .news-feed, .friend-list, .ticket-list, .create-event {
+.presentation, .featured-events, .event-list, .news-feed, .ticket-list, .create-event {
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
@@ -218,4 +217,76 @@ footer {
     .news-item {
         width: 100%;
     }
+}
+
+/* Specific styles for the "Mes Amis" section */
+
+.friend-list {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.favorite-friends {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.favorites {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.favorite-item {
+    text-align: center;
+}
+
+.favorite-item img {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    transition: transform 0.3s ease;
+}
+
+.favorite-item img:hover {
+    transform: scale(1.1);
+}
+
+.friends-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.friend-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 200px;
+}
+
+.friend-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20%;
+    margin-bottom: 5px;
+}
+
+.friend-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+button, .nav-links a, .social-links a {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff7043;
+    transform: scale(1.05);
 }
