@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mes Amis - Gestion d'Événements</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="assets/images/logo.png" alt="Logo"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="events.html">Événements</a></li>
+                <li><a href="feed.html">Fil d'Actualité</a></li>
+                <li><a href="friends.html">Mes Amis</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="assets/images/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="assets/images/instagram.png" alt="Instagram"></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="friends-list">
+            <h2>Mes Amis</h2>
+            <div class="friend-item">
+                <img src="assets/images/friend1.jpg" alt="Ami 1">
+                <h3>Nom de l'Ami 1</h3>
+                <button onclick="viewProfile('friend1')">Voir Profil</button>
+                <button onclick="inviteToEvent('friend1')">Inviter à un événement</button>
+            </div>
+            <!-- Ajoutez plus d'éléments d'amis -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Gestion d'Événements. Tous droits réservés.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

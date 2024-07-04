@@ -1,0 +1,120 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.social-links img {
+    height: 30px;
+    margin-left: 1rem;
+}
+
+.banner {
+    background: url('assets/images/banner.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.banner h1 {
+    font-size: 3rem;
+}
+
+.banner button {
+    background-color: #ff5722;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.banner button:hover {
+    background-color: #e64a19;
+}
+
+.presentation, .featured-events, .event-list, .news-feed, .friends-list, .ticket-list {
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.event-grid, .friend-item, .ticket-item {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.event-item, .friend-item, .ticket-item {
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 1 1 calc(33.333% - 2rem);
+    box-sizing: border-box;
+}
+
+.event-item img, .friend-item img, .ticket-item img {
+    width: 100%;
+    height: auto;
+}
+
+.event-item h3, .friend-item h3, .ticket-item h3 {
+    margin: 0.5rem 0;
+}
+
+button {
+    background-color: #ff5722;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background-color: #e64a19;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
