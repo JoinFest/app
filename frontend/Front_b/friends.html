@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Mes Amis - Gestion d'Événements</title>
 </head>
@@ -18,7 +17,6 @@
                 <li><a href="feed.html">Fil d'Actualité</a></li>
                 <li><a href="friends.html">Mes Amis</a></li>
                 <li><a href="tickets.html">Mes Tickets</a></li>
-                <li><a href="create_event.html">Créer un Événement</a></li>
             </ul>
             <div class="social-links">
                 <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
@@ -28,56 +26,26 @@
         </nav>
     </header>
     <main>
-        <section class="favorite-friends">
-            <h2>Amis Favoris</h2>
-            <div class="favorite-grid">
-                <div class="favorite-item" onmouseover="showFriendDetails('friend1')" onmouseout="hideFriendDetails('friend1')">
-                    <img src="assets/images/friend1.jpg" alt="Ami Favori 1">
-                    <h3>Ami Favori 1</h3>
-                    <div class="friend-details" id="details-friend1">
-                        <p>Quelques détails sur l'ami 1</p>
-                    </div>
-                </div>
-                <div class="favorite-item" onmouseover="showFriendDetails('friend2')" onmouseout="hideFriendDetails('friend2')">
-                    <img src="assets/images/friend2.jpg" alt="Ami Favori 2">
-                    <h3>Ami Favori 2</h3>
-                    <div class="friend-details" id="details-friend2">
-                        <p>Quelques détails sur l'ami 2</p>
-                    </div>
-                </div>
-                <div class="favorite-item" onmouseover="showFriendDetails('friend3')" onmouseout="hideFriendDetails('friend3')">
-                    <img src="assets/images/friend3.jpg" alt="Ami Favori 3">
-                    <h3>Ami Favori 3</h3>
-                    <div class="friend-details" id="details-friend3">
-                        <p>Quelques détails sur l'ami 3</p>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="friend-list">
-            <h2>Liste de Tous Mes Amis</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pseudo</th>
-                        <th>Inviter à un événement</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ami 4</td>
-                        <td><button data-action="inviteToEvent" data-id="friend4">Inviter</button></td>
-                    </tr>
-                    <tr>
-                        <td>Ami 5</td>
-                        <td><button data-action="inviteToEvent" data-id="friend5">Inviter</button></td>
-                    </tr>
-                    <tr>
-                        <td>Ami 6</td>
-                        <td><button data-action="inviteToEvent" data-id="friend6">Inviter</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Mes Amis</h2>
+            <div class="friend-item">
+                <img src="assets/images/friend1.jpg" alt="Ami 1">
+                <h3>Ami 1</h3>
+                <button onclick="viewProfile('friend1')">Voir Profil</button>
+                <button onclick="inviteToEvent('friend1')">Inviter à un événement</button>
+            </div>
+            <div class="friend-item">
+                <img src="assets/images/friend2.jpg" alt="Ami 2">
+                <h3>Ami 2</h3>
+                <button onclick="viewProfile('friend2')">Voir Profil</button>
+                <button onclick="inviteToEvent('friend2')">Inviter à un événement</button>
+            </div>
+            <div class="friend-item">
+                <img src="assets/images/friend3.jpg" alt="Ami 3">
+                <h3>Ami 3</h3>
+                <button onclick="viewProfile('friend3')">Voir Profil</button>
+                <button onclick="inviteToEvent('friend3')">Inviter à un événement</button>
+            </div>
         </section>
     </main>
     <footer>
