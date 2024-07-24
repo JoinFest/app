@@ -18,4 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translateY(0)';
         }, index * 200);
     });
+    const bannerText = document.querySelector(".banner-text");
+
+    window.addEventListener("scroll", function() {
+        const offset = window.scrollY;
+        bannerText.style.transform = "translateY(" + offset * 0.5 + "px)";
+    });
+
+    const profileForm = document.getElementById("profile-form");
+
+    profileForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Informations du profil mises à jour !");
+    });
 });
