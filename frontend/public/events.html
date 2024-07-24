@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joinfest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Joinfest</div>
+            <ul>
+                <li><a href="home.html">Accueil</a></li>
+                <li><a href="events.html">Événements</a></li>
+                <li><a href="profile.html">Profil</a></li>
+                <li><a href="create-event.html">Créer Événement</a></li>
+                <li><a href="my-events.html">Mes Événements</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="banner">
+            <div class="banner-content">
+                <h1>Tous les Événements</h1>
+            </div>
+        </section>
+        <section class="event-filters">
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher des événements...">
+                <button>Recherche</button>
+            </div>
+            <div class="filters">
+                <h3>Filtres</h3>
+                <div>
+                    <label><input type="checkbox"> Filtre 1</label>
+                </div>
+                <div>
+                    <label><input type="checkbox"> Filtre 2</label>
+                </div>
+                <div>
+                    <label><input type="checkbox"> Filtre 3</label>
+                </div>
+            </div>
+        </section>
+        <section class="event-list">
+            <div class="sort-options">
+                <button>Pertinence</button>
+                <button>Date</button>
+                <button>Popularité</button>
+            </div>
+            <div class="event-grid">
+                <!-- Exemple de carte d'événement -->
+                <div class="event-card">
+                    <img src="event-image.jpg" alt="Image de l'événement">
+                    <div class="event-info">
+                        <h3>Titre de l'événement</h3>
+                        <p>Date de l'événement</p>
+                        <p>Description courte de l'événement.</p>
+                        <button class="details-button">Détails</button>
+                    </div>
+                </div>
+                <!-- Ajouter d'autres cartes d'événements ici -->
+            </div>
+            <div class="pagination">
+                <button>Précédent</button>
+                <button>Suivant</button>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <ul>
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="#"><img src="img/facebook-logo-facebook-icon-transparent-free-png.webp" alt="Facebook"></a>
+                <a href="#"><img src="img/Logo-Twitter-icon-transparent-PNG.png" alt="Twitter"></a>
+                <a href="#"><img src="img/png-transparent-social-media-instagram-login-graphy-ig-instagram-icon-rectangle-magenta-mobile-phones-thumbnail.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

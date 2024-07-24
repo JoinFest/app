@@ -21,6 +21,9 @@ img {
 }
 
 /* Navbar Styles */
+
+
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -28,7 +31,7 @@ img {
     height: 60px;
     background-color: #f8f9fa;
     padding: 0 20px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Ajouté */
 }
 
 .logo {
@@ -72,13 +75,13 @@ img {
     width: 100%;
     height: 400px;
     background: radial-gradient(100% 225% at 100% 0%, #FF0000 0%, #000000 100%), linear-gradient(236deg, #00C2FF 0%, #000000 100%), linear-gradient(135deg, #CDFFEB 0%, #CDFFEB 36%, #009F9D 36%, #009F9D 60%, #07456F 60%, #07456F 67%, #0F0A3C 67%, #0F0A3C 100%);
-    background-blend-mode: overlay, hard-light, normal;
-    display: flex;
+    background-blend-mode: overlay, hard-light, normal;    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #FFFFFF;
-    overflow: hidden;
+    overflow: hidden; /* Ajouté */
+
 }
 
 .banner-content {
@@ -115,7 +118,7 @@ img {
 }
 
 /* Event Section Styles */
-.featured-events, .recommended-events, .event-list, .events-section {
+.featured-events, .recommended-events {
     padding: 40px 20px;
     text-align: center;
 }
@@ -143,9 +146,6 @@ img {
 .event-card img {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
 }
 
 .event-card h3 {
@@ -214,8 +214,6 @@ img {
 .social-media img:hover {
     filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(2578%) hue-rotate(187deg) brightness(92%) contrast(95%);
 }
-
-/* Event Filters */
 .event-filters {
     display: flex;
     justify-content: space-between;
@@ -255,8 +253,10 @@ img {
 .filters div {
     margin-bottom: 10px;
 }
+.event-list {
+    padding: 20px;
+}
 
-/* Sort Options */
 .sort-options {
     display: flex;
     justify-content: center;
@@ -278,274 +278,172 @@ img {
     color: #FFFFFF;
 }
 
-/* Form Styles */
-.form-section {
+.event-grid {
     display: flex;
+    gap: 20px;
     justify-content: center;
-    align-items: center;
-    padding: 40px 0;
+    flex-wrap: wrap;
 }
 
-.create-event-form {
-    width: 600px;
+.event-card {
     background: #FFFFFF;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 150px; /* Ajouté pour fixer la taille des images */
+    object-fit: cover;
+}
+
+.event-info {
+    padding: 10px;
+}
+
+.event-info h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.event-info p {
+    font-size: 14px;
+    color: #343a40;
+    margin: 5px 0;
+}
+
+.details-button {
+    background-color: #007BFF;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.details-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Styles pour la page de création d'événements */
+.create-event-container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
 }
 
-.form-group {
+.create-event-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #000000;
     margin-bottom: 20px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
+.create-event-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.form-group input[type="text"], .form-group textarea, .form-group input[type="date"], .form-group input[type="time"], .form-group input[type="file"] {
-    width: 100%;
+.create-event-container input[type="text"],
+.create-event-container input[type="datetime-local"],
+.create-event-container input[type="file"],
+.create-event-container textarea {
     padding: 10px;
+    font-size: 16px;
     border: 1px solid #ced4da;
     border-radius: 5px;
-    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
 }
 
-.upload-image {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #ced4da;
-    background-color: #f8f9fa;
-    cursor: pointer;
-}
-
-.upload-image:hover {
+.create-event-container input[type="text"]:focus,
+.create-event-container input[type="datetime-local"]:focus,
+.create-event-container input[type="file"]:focus,
+.create-event-container textarea:focus {
     border-color: #007BFF;
 }
 
-.upload-image input {
-    display: none;
-}
-.upload-image::before {
-    content: "Glissez-déposez une image ou cliquez pour télécharger";
-    display: block;
-    text-align: center;
-    font-size: 16px;
-    color: #6c757d;
+.create-event-container textarea {
+    height: 100px;
+    resize: none;
 }
 
-.form-actions {
+.create-event-container .image-upload {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.create-event-container .image-upload input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.create-event-container .image-upload label {
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    text-align: center;
+}
+
+.create-event-container .buttons {
     display: flex;
     justify-content: space-between;
 }
 
-.btn {
-    padding: 10px 20px;
-    font-size: 16px;
+.create-event-container .buttons button {
+    width: 120px;
+    height: 50px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.btn-primary {
+.create-event-container .buttons .create-button {
     background-color: #007BFF;
     color: #FFFFFF;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    color: #FFFFFF;
-}
-
-.btn-success {
-    background-color: #28a745;
-    color: #FFFFFF;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: #FFFFFF;
-}
-
-.btn:hover {
+.create-event-container .buttons .create-button:hover {
     transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Event Details Styles */
-.event-details {
-    padding: 40px 20px;
-    text-align: center;
+.create-event-container .buttons .cancel-button {
+    background-color: #6c757d;
+    color: #FFFFFF;
 }
 
-.event-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
-
-.event-info {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.event-info h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.event-info .event-date-time, .event-info .event-location {
-    font-size: 24px;
-    color: #6c757d;
-    margin-bottom: 10px;
-}
-
-.event-info .event-description {
-    font-size: 18px;
-    color: #000000;
-    text-align: justify;
-    margin-bottom: 20px;
-}
-
-/* Comments Section Styles */
-.comments-section {
-    padding: 20px;
-    background-color: #f8f9fa;
-}
-
-.comments-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.comment-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.comment-input {
-    width: 100%;
-    max-width: 800px;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.comments-list {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.comment-card {
-    background: #FFFFFF;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.comment-card p {
-    margin: 0;
-}
-
-.comment-card .comment-date {
-    font-size: 14px;
-    color: #6c757d;
-    margin-top: 5px;
-}
-
-/* Profile Section Styles */
-.profile-section {
-    padding: 40px 20px;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.profile-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid #e9ecef;
-    object-fit: cover;
-    margin-right: 20px;
-    transition: transform 0.3s;
-}
-
-.profile-photo:hover {
-    transform: scale(1.1);
-}
-
-.profile-info {
-    flex: 1;
-}
-
-.profile-info h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.profile-info .bio {
-    font-size: 16px;
-    color: #343a40;
-    margin-bottom: 20px;
-}
-
-/* Friends Section Styles */
-.friends-section {
-    margin-top: 40px;
-}
-
-.friend-card {
-    display: flex;
-    align-items: center;
-    background: #FFFFFF;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.friend-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 20px;
-    object-fit: cover;
-}
-
-.friend-card p {
-    flex: 1;
-    font-size: 18px;
-    margin: 0;
-}
-
-/* Event Card Styles */
-.events-section .event-card img {
-    height: 150px;
-}
-
-.events-section .event-card h3 {
-    font-size: 18px;
-}
-
-.events-section .event-card p {
-    font-size: 16px;
-}
-
-.events-section .event-card .btn-secondary, .events-section .event-card .btn-danger {
-    margin: 10px 0;
+.create-event-container .buttons .cancel-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
