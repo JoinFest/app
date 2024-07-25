@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - Événements Amis</title>
+    <link rel="stylesheet" href="style/s3.css">
+</head>
+<body>
+
+    <main>
+        <section class="banner">
+            <div class="banner-text floating">Mon Profil</div>
+        </section>
+        <section>
+            <div class="content-container">
+                <h2>Informations du profil</h2>
+                <form id="profile-form">
+                    <label for="first-name">Prénom:</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                    
+                    <label for="last-name">Nom:</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="profile-picture">Photo de profil:</label>
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+                    
+                    <button type="submit">Mettre à jour</button>
+                </form>
+                
+                <h2>Mes Événements</h2>
+                <ul id="user-events">
+                    <li>Événement 1</li>
+                    <li>Événement 2</li>
+                    <li>Événement 3</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Événements Amis
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
