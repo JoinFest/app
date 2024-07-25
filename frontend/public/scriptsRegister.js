@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Empêche le formulaire de se soumettre normalement
 
         // Récupère les valeurs des champs du formulaire
-        const username = document.getElementById('username').value;
+        const username = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirm-password').value;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Envoie la requête POST à l'API
-        fetch('http://localhost:3000/api/auth/register', { 
+        fetch('http://localhost:3000/auth/register', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,13 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
-                // Redirige l'utilisateur ou affiche un message de succès
-                alert('Compte créé avec succès !');
-                window.location.href = 'login.html'; // Redirection vers la page de connexion
-            } else {
-                // Affiche un message d'erreur
-                alert('Erreur lors de la création du compte : ' + data.message);
+            console.log(data)
+            if (data.error) {
+                alert("erreur lors de la creation du compte")
+            }else {
+                window.location.href = "/login";
             }
         })
         .catch(error => {
