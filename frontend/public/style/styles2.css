@@ -1,0 +1,449 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Navbar Styles */
+
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: #f8f9fa;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Ajouté */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    list-style: none;
+}
+
+.navbar ul li a {
+    font-size: 16px;
+    color: #000000;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #007BFF;
+}
+
+.icons img {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    transition: filter 0.3s;
+}
+
+.icons img:hover {
+    filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(2578%) hue-rotate(187deg) brightness(92%) contrast(95%);
+}
+
+/* Banner Styles */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: radial-gradient(100% 225% at 100% 0%, #FF0000 0%, #000000 100%), linear-gradient(236deg, #00C2FF 0%, #000000 100%), linear-gradient(135deg, #CDFFEB 0%, #CDFFEB 36%, #009F9D 36%, #009F9D 60%, #07456F 60%, #07456F 67%, #0F0A3C 67%, #0F0A3C 100%);
+    background-blend-mode: overlay, hard-light, normal;    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    overflow: hidden; /* Ajouté */
+
+}
+
+.banner-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.banner h1 {
+    font-size: 48px;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.banner p {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.cta-button {
+    background-color: #007BFF;
+    color: #FFFFFF;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cta-button:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+/* Event Section Styles */
+.featured-events, .recommended-events {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.event-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.event-card {
+    background: #FFFFFF;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.event-card h3 {
+    font-size: 18px;
+    margin: 10px;
+}
+
+.event-card p {
+    font-size: 16px;
+    color: #6c757d;
+    margin: 5px 10px;
+}
+
+.details-button, .participate-button {
+    background-color: #007BFF;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.details-button:hover, .participate-button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-content ul li {
+    list-style: none;
+}
+
+.footer-content ul li a {
+    font-size: 16px;
+    color: #6c757d;
+    transition: color 0.3s;
+}
+
+.footer-content ul li a:hover {
+    color: #007BFF;
+}
+
+.social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: filter 0.3s;
+}
+
+.social-media img:hover {
+    filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(2578%) hue-rotate(187deg) brightness(92%) contrast(95%);
+}
+.event-filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filters {
+    width: 250px;
+}
+
+.filters h3 {
+    margin-top: 0;
+}
+
+.filters div {
+    margin-bottom: 10px;
+}
+.event-list {
+    padding: 20px;
+}
+
+.sort-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sort-options button {
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sort-options button:hover {
+    background-color: #007BFF;
+    color: #FFFFFF;
+}
+
+.event-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.event-card {
+    background: #FFFFFF;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 150px; /* Ajouté pour fixer la taille des images */
+    object-fit: cover;
+}
+
+.event-info {
+    padding: 10px;
+}
+
+.event-info h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.event-info p {
+    font-size: 14px;
+    color: #343a40;
+    margin: 5px 0;
+}
+
+.details-button {
+    background-color: #007BFF;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.details-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Styles pour la page de création d'événements */
+.create-event-container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-event-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.create-event-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.create-event-container input[type="text"],
+.create-event-container input[type="datetime-local"],
+.create-event-container input[type="file"],
+.create-event-container textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.create-event-container input[type="text"]:focus,
+.create-event-container input[type="datetime-local"]:focus,
+.create-event-container input[type="file"]:focus,
+.create-event-container textarea:focus {
+    border-color: #007BFF;
+}
+
+.create-event-container textarea {
+    height: 100px;
+    resize: none;
+}
+
+.create-event-container .image-upload {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.create-event-container .image-upload input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.create-event-container .image-upload label {
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    text-align: center;
+}
+
+.create-event-container .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-event-container .buttons button {
+    width: 120px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.create-event-container .buttons .create-button {
+    background-color: #007BFF;
+    color: #FFFFFF;
+}
+
+.create-event-container .buttons .create-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.create-event-container .buttons .cancel-button {
+    background-color: #6c757d;
+    color: #FFFFFF;
+}
+
+.create-event-container .buttons .cancel-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
