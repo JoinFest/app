@@ -15,6 +15,7 @@ export class EventService {
             createEventDto.name,
             createEventDto.description,
             new Date(createEventDto.date),
+            createEventDto.location
         );
         return await this.eventRepository.create(event);
     }

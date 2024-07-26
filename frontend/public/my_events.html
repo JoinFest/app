@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Profil</title>
+    <title>Mes évènements</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -14,25 +14,12 @@
 </header>
 <main class="container mt-5">
     <div class="jumbotron text-center">
-        <h1 class="display-4">Profil</h1>
+        <h1 class="display-4">Mes évènements</h1>
+        <p class="lead">Voici les évènements auxquels vous participez et ceux que vous avez organisés.</p>
     </div>
-    <form class="needs-validation" id="profile-form" novalidate>
-        <div class="form-group">
-            <label for="profile-name">Nom:</label>
-            <input class="form-control" id="profile-name" name="profile-name" required type="text">
-            <div class="invalid-feedback">
-                Veuillez entrer votre nom.
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="profile-email">Email:</label>
-            <input class="form-control" id="profile-email" name="profile-email" required type="email">
-            <div class="invalid-feedback">
-                Veuillez entrer votre email.
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Mettre à jour</button>
-    </form>
+    <div class="row" id="my-events-list">
+        <!-- Liste des évènements dynamiquement remplie via JS -->
+    </div>
 </main>
 <footer class="mt-5">
     <div id="footer"></div>
