@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(filePath)
             .then(response => response.text())
             .then(data => {
-                console.log(document.getElementById(elementId));
-
                 document.getElementById(elementId).innerHTML = data;
 
                 // Ajouter la logique pour le lien du profil après avoir chargé le navbar
@@ -41,17 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const createEventForm = document.getElementById('create-event-form');
     if (createEventForm) {
         checkAuth();
-        console.log("createEventForm", createEventForm);
         createEventForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Ici on enverrait les données au backend
             const eventName = document.getElementById('event-name').value;
             const eventDate = document.getElementById('event-date').value;
             const eventDescription = document.getElementById('event-description').value;
 
             console.log('Évènement créé:', {eventName, eventDate, eventDescription});
-            // Redirection ou affichage d'un message de succès
         });
     }
 
@@ -77,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.href = 'index.html';
                     } else {
                         console.error('Login failed:', data);
-                        // Optionally display an error message to the user
                     }
                 })
                 .catch(error => console.error('Error:', error));
@@ -90,13 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Ici on enverrait les données au backend pour créer le compte
             const name = document.getElementById('register-name').value;
             const email = document.getElementById('register-email').value;
             const password = document.getElementById('register-password').value;
 
             console.log('Compte créé:', {name, email, password});
-            // Redirection ou affichage d'un message de succès
         });
     }
 
@@ -107,12 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             checkAuth();
 
-            // Ici on enverrait les données au backend pour mettre à jour le profil
             const name = document.getElementById('profile-name').value;
             const email = document.getElementById('profile-email').value;
 
             console.log('Profil mis à jour:', {name, email});
-            // Redirection ou affichage d'un message de succès
         });
     }
 
@@ -121,8 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('http://localhost:3000/events')
             .then(response => response.json())
             .then(events => {
-                console.log('Évènements:', events);
-
                 const dateOptions = {
                     day: '2-digit',
                     month: '2-digit',
@@ -170,17 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-
     // Chargement des évènements personnels
     const myEventsList = document.getElementById('my-events-list');
     if (myEventsList) {
         checkAuth();
 
-        // Simuler le chargement des évènements depuis le backend
         const myEvents = [
             {name: 'My Event 1', date: '2024-09-01', description: 'My Description 1'},
-            {name: 'My Event 2', date: '2024-09-15', description: 'My Description 2'},
-            // etc.
+            {name: 'My Event 2', date: '2024-09-15', description: 'My Description 2'}
         ];
         myEvents.forEach(event => {
             const eventElement = document.createElement('div');
@@ -253,11 +238,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error loading event details:', error));
     }
-      // Fonction pour charger les événements statiques passés
-      function loadStaticPastEvents() {
+
+    // Fonction pour charger les événements statiques passés
+    function loadStaticPastEvents() {
         const historyEventsList = document.getElementById('history-events-list');
         if (historyEventsList) {
-            // Données statiques des événements passés
             const pastEvents = [
                 {
                     name: 'Événement Passé 1',
@@ -314,6 +299,84 @@ document.addEventListener('DOMContentLoaded', () => {
         loadStaticPastEvents();
     }
 
+    // Fonction pour rechercher des événements
+    function searchEvents(name, date, location) {
+        const searchResults = document.getElementById('search-results');
+        searchResults.innerHTML = ''; // Clear previous results
+
+        const events = [
+            {name: 'Événement 1', date: '2024-09-01', location: 'Paris', description: 'Description de l\'événement 1', image: './img/event1.jpg'},
+            {name: 'Événement 2', date: '2024-09-15', location: 'Lyon', description: 'Description de l\'événement 2', image: './img/event2.jpg'},
+            {name: 'Événement 3', date: '2024-10-20', location: 'Marseille', description: 'Description de l\'événement 3', image: './img/event3.jpg'}
+        ];
+
+        const filteredEvents = events.filter(event => {
+            return (!name || event.name.toLowerCase().includes(name.toLowerCase())) &&
+                   (!date || event.date === date) &&
+                   (!location || event.location.toLowerCase().includes(location.toLowerCase()));
+        });
+
+        filteredEvents.forEach(event => {
+            const eventElement = document.createElement('div');
+            eventElement.classList.add('col-md-4', 'mb-4');
+            eventElement.innerHTML = `
+                <div class="card h-100">
+                    <img src="${event.image}" class="card-img-top" alt="Image de l'événement">
+                    <div class="card-body">
+                        <h5 class="card-title">${event.name}</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt"></i> ${event.date}</p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
+                        <p class="card-text">${event.description}</p>
+                    </div>
+                </div>`;
+            searchResults.appendChild(eventElement);
+        });
+    }
+
+    // Gestion du formulaire de recherche
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('search-name').value;
+            const date = document.getElementById('search-date').value;
+            const location = document.getElementById('search-location').value;
+            searchEvents(name, date, location);
+        });
+    }
+
+    // Fonction pour charger les utilisateurs
+    function loadUsers() {
+        const usersList = document.getElementById('users-list');
+        if (usersList) {
+            const users = [
+                {name: 'Utilisateur 1', email: 'user1@example.com', role: 'Admin'},
+                {name: 'Utilisateur 2', email: 'user2@example.com', role: 'Utilisateur'},
+                {name: 'Utilisateur 3', email: 'user3@example.com', role: 'Utilisateur'}
+            ];
+
+            users.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.classList.add('col-md-4', 'mb-4');
+                userElement.innerHTML = `
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${user.name}</h5>
+                            <p class="card-text"><i class="fas fa-envelope"></i> ${user.email}</p>
+                            <p class="card-text"><i class="fas fa-user-tag"></i> ${user.role}</p>
+                            <button class="btn btn-primary">Modifier</button>
+                            <button class="btn btn-danger">Supprimer</button>
+                        </div>
+                    </div>`;
+                usersList.appendChild(userElement);
+            });
+        }
+    }
+
+    // Appel de la fonction pour charger les utilisateurs si on est sur la page de gestion des utilisateurs
+    if (document.getElementById('users-list')) {
+        loadUsers();
+    }
 
 });
 
@@ -322,7 +385,7 @@ const imagePool = [
     './img/event1.jpg',
     './img/event2.jpg',
     './img/event3.jpg',
-    './img/event4.webp',
+    './img/event4.webp'
 ];
 
 function getRandomImage() {
