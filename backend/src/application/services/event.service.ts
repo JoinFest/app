@@ -9,14 +9,17 @@ export class EventService {
     constructor(private readonly eventRepository: EventRepository) {
     }
 
-    async create(createEventDto: CreateEventDto): Promise<Event> {
+    async create(createEventDto: CreateEventDto & { hostId: string }): Promise<Event> {
         const event = new Event(
             new ObjectId(),
             createEventDto.name,
             createEventDto.description,
             new Date(createEventDto.date),
-            createEventDto.location
+            createEventDto.location,
+            new ObjectId(createEventDto.hostId) // Utilisation de l'ID de l'hôte
         );
+        console.log(event);
+        console.log(createEventDto);
         return await this.eventRepository.create(event);
     }
 

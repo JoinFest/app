@@ -2,7 +2,7 @@ import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import {User} from '../models/user.model';
 import {Injectable} from '@nestjs/common';
-import {ObjectId} from "typeorm";
+import {ObjectId} from 'bson';
 
 @Injectable()
 export class UserRepository {
@@ -28,5 +28,9 @@ export class UserRepository {
 
     async findAll(): Promise<User[]> {
         return await this.userModel.find().exec();
+    }
+
+    async delete(id: ObjectId): Promise<void> {
+        await this.userModel.deleteOne({_id: id}).exec();
     }
 }

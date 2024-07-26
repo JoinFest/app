@@ -29,29 +29,48 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHTML('navbar', 'navbar.html');
     loadHTML('footer', 'footer.html');
 
-    // Simuler une vérification de JWT pour l'authentification
     function checkAuth() {
         const token = localStorage.getItem('jwt');
         if (!token) {
             window.location.href = 'login.html';
         }
+        return token;
     }
 
-    // Gestion du formulaire de création d'évènement
+
     const createEventForm = document.getElementById('create-event-form');
     if (createEventForm) {
-        checkAuth();
-        console.log("createEventForm", createEventForm);
         createEventForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            const token = checkAuth();
 
-            // Ici on enverrait les données au backend
             const eventName = document.getElementById('event-name').value;
             const eventDate = document.getElementById('event-date').value;
+            const eventLocation = document.getElementById('event-location').value;
             const eventDescription = document.getElementById('event-description').value;
 
-            console.log('Évènement créé:', {eventName, eventDate, eventDescription});
-            // Redirection ou affichage d'un message de succès
+            fetch('http://localhost:3000/events', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    name: eventName,
+                    date: eventDate,
+                    location: eventLocation,
+                    description: eventDescription
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Événement créé avec succès');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('Erreur lors de la création de l\'événement');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     }
 
@@ -78,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         console.error('Login failed:', data);
                         // Optionally display an error message to the user
+                        alert('Login failed. Please check your email and password.');
                     }
                 })
                 .catch(error => console.error('Error:', error));
@@ -253,16 +273,16 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error loading event details:', error));
     }
-
-
 });
 
 const imagePool = [
-    './img/event1.jpeg',
-    './img/event1.jpg',
-    './img/event2.jpg',
-    './img/event3.jpg',
-    './img/event4.webp',
+    './img/event-1.png',
+    './img/event-2.png',
+    './img/event-3.png',
+    './img/event-4.png',
+    './img/event-5.png',
+    './img/event-6.jpg',
+    './img/event-7.png',
 ];
 
 function getRandomImage() {
