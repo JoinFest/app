@@ -14,6 +14,10 @@ export class EventRepository {
         return await createdEvent.save();
     }
 
+    async findByHost(hostId: ObjectId): Promise<Event[]> {
+        return await this.eventModel.find({hostId}).exec();
+    }
+
     async findById(id: ObjectId): Promise<Event> {
         return await this.eventModel.findById(id).exec();
     }

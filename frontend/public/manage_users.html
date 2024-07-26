@@ -2,9 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mes Événements</title>
+    <title>Gestion des Utilisateurs</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
@@ -12,8 +13,13 @@
     <div id="navbar"></div>
 </header>
 <main class="container mt-5">
-    <h2>Mes Événements</h2>
-    <div class="row" id="my-events-list"></div>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Gestion des Utilisateurs</h1>
+        <p class="lead">Voir et gérer les utilisateurs de l'application.</p>
+    </div>
+    <div class="row" id="users-list">
+        <!-- Liste des utilisateurs dynamiquement remplie via JS -->
+    </div>
 </main>
 <footer class="mt-5">
     <div id="footer"></div>

@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(filePath)
             .then(response => response.text())
             .then(data => {
-                console.log(document.getElementById(elementId));
-
                 document.getElementById(elementId).innerHTML = data;
 
                 // Ajouter la logique pour le lien du profil après avoir chargé le navbar
@@ -104,23 +102,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Gestion du formulaire de création de compte
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Ici on enverrait les données au backend pour créer le compte
             const name = document.getElementById('register-name').value;
             const email = document.getElementById('register-email').value;
             const password = document.getElementById('register-password').value;
 
-            console.log('Compte créé:', {name, email, password});
-            // Redirection ou affichage d'un message de succès
+            fetch('http://localhost:3000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({name, email, password})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.id) {
+                        alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+                        window.location.href = 'login.html';
+                    } else {
+                        console.error('Inscription échouée:', data);
+                        alert('Inscription échouée. Veuillez réessayer.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     }
 
-    // Gestion du formulaire de mise à jour du profil
     const profileForm = document.getElementById('profile-form');
     if (profileForm) {
         profileForm.addEventListener('submit', (e) => {
@@ -191,23 +202,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Chargement des évènements personnels
     const myEventsList = document.getElementById('my-events-list');
     if (myEventsList) {
-        checkAuth();
+        const token = checkAuth();
 
-        // Simuler le chargement des évènements depuis le backend
-        const myEvents = [
-            {name: 'My Event 1', date: '2024-09-01', description: 'My Description 1'},
-            {name: 'My Event 2', date: '2024-09-15', description: 'My Description 2'},
-            // etc.
-        ];
-        myEvents.forEach(event => {
-            const eventElement = document.createElement('div');
-            eventElement.classList.add('card', 'col-md-4');
-            eventElement.innerHTML = `<h3>${event.name}</h3><p>${event.date}</p><p>${event.description}</p>`;
-            myEventsList.appendChild(eventElement);
-        });
+        fetch('http://localhost:3000/events/my-events', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => response.json())
+            .then(events => {
+                const dateOptions = {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                };
+
+                events.forEach(event => {
+                    const formattedDate = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date(event.date));
+                    const randomImage = getRandomImage();
+
+                    const eventElement = document.createElement('div');
+                    eventElement.classList.add('col-md-4', 'mb-4');
+                    eventElement.innerHTML = `
+                    <div class="card h-100 clickable-card" data-id="${event._id}">
+                        <img src="${randomImage}" class="card-img-top" alt="Image de l'événement">
+                        <div class="card-body">
+                            <h5 class="card-title">${event.name}</h5>
+                            <p class="card-text">
+                                <i class="fas fa-calendar-alt"></i> ${formattedDate}
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt"></i> ${event.location}
+                            </p>
+                            <p class="card-text">${event.description}</p>
+                        </div>
+                    </div>`;
+                    myEventsList.appendChild(eventElement);
+
+                    document.querySelectorAll('.clickable-card').forEach(card => {
+                        card.addEventListener('click', () => {
+                            const eventId = card.getAttribute('data-id');
+                            window.location.href = `event.html?id=${eventId}`;
+                        });
+                    });
+                });
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     const eventId = new URLSearchParams(window.location.search).get('id');
@@ -272,6 +317,102 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .catch(error => console.error('Error loading event details:', error));
+    }
+
+    async function searchEvents(name, date, location) {
+        const searchResults = document.getElementById('search-results');
+        searchResults.innerHTML = ''; // Clear previous results
+
+        const response = await fetch('http://localhost:3000/events');
+        const events = await response.json();
+
+        const filteredEvents = events.filter(event => {
+            return (!name || event.name.toLowerCase().includes(name.toLowerCase())) &&
+                (!date || event.date === date) &&
+                (!location || event.location.toLowerCase().includes(location.toLowerCase()));
+        });
+
+        const dateOptions = {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+
+        filteredEvents.forEach(event => {
+            const formattedDate = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date(event.date));
+            const randomImage = getRandomImage();
+
+            const eventElement = document.createElement('div');
+            eventElement.classList.add('col-md-4', 'mb-4');
+            eventElement.innerHTML = `
+                    <div class="card h-100 clickable-card" data-id="${event._id}">
+                        <img src="${randomImage}" class="card-img-top" alt="Image de l'événement">
+                        <div class="card-body">
+                            <h5 class="card-title">${event.name}</h5>
+                            <p class="card-text">
+                                <i class="fas fa-calendar-alt"></i> ${formattedDate}
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt"></i> ${event.location}
+                            </p>
+                            <p class="card-text">${event.description}</p>
+                        </div>
+                    </div>`;
+            searchResults.appendChild(eventElement);
+
+            document.querySelectorAll('.clickable-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const eventId = card.getAttribute('data-id');
+                    window.location.href = `event.html?id=${eventId}`;
+                });
+            });
+        });
+    }
+
+    // Gestion du formulaire de recherche
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('search-name').value;
+            const date = document.getElementById('search-date').value;
+            const location = document.getElementById('search-location').value;
+            searchEvents(name, date, location);
+        });
+    }
+
+    // Fonction pour charger les utilisateurs
+    function loadUsers() {
+        const usersList = document.getElementById('users-list');
+        if (usersList) {
+            fetch('http://localhost:3000/users')
+                .then(response => response.json())
+                .then(users => {
+                    users.forEach(user => {
+                        const userElement = document.createElement('div');
+                        userElement.classList.add('col-md-4', 'mb-4');
+                        userElement.innerHTML = `
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${user.name}</h5>
+                            <p class="card-text"><i class="fas fa-envelope"></i> ${user.email}</p>
+                            <p class="card-text"><i class="fas fa-user-tag"></i> ${user.name}</p>
+                            <button class="btn btn-primary">Modifier</button>
+                            <button class="btn btn-danger">Supprimer</button>
+                        </div>
+                    </div>`;
+                        usersList.appendChild(userElement);
+                    });
+                });
+        }
+    }
+
+    // Appel de la fonction pour charger les utilisateurs si on est sur la page de gestion des utilisateurs
+    if (document.getElementById('users-list')) {
+        loadUsers();
     }
 });
 

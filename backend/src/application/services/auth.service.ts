@@ -26,7 +26,9 @@ export class AuthService {
         if (!user) {
             throw new UnauthorizedException();
         }
-        const payload = {username: user.email, sub: user.id};
+        console.log(user);
+        const payload = {username: user._doc.email, sub: user._doc._id}; // Ensure 'sub' contains user._id
+        console.log(payload);
         return {
             access_token: this.jwtService.sign(payload),
         };

@@ -33,8 +33,12 @@ export class UserController {
     @Get()
     @ApiOperation({summary: 'Get all users'})
     @ApiResponse({status: 200, description: 'Users found'})
-    async findAll(): Promise<User[]> {
-        return await this.userService.findAll();
+    async findAll(): Promise<Partial<User>[]> {
+        const users = await this.userService.findAll();
+        return users.map(user => {
+            const {password, ...result} = user; // Exclude password
+            return result;
+        });
     }
 
     @Delete(':id')

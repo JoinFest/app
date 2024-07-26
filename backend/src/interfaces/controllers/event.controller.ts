@@ -19,8 +19,18 @@ export class EventController {
     @ApiResponse({status: 201, description: 'Event created successfully'})
     @ApiResponse({status: 400, description: 'Bad Request'})
     async create(@Body() createEventDto: CreateEventDto, @Req() req): Promise<Event> {
-        const hostId = req.user.userId;
+        const hostId = req.user.userId; // Extract the host ID from the JWT
         return await this.eventService.create({...createEventDto, hostId});
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('my-events')
+    @ApiOperation({summary: 'Get events by host ID'})
+    @ApiResponse({status: 200, description: 'Events found'})
+    @ApiResponse({status: 404, description: 'Events not found'})
+    async findByHost(@Req() req): Promise<Event[]> {
+        const hostId = req.user.userId; // Extract the host ID from the JWT
+        return await this.eventService.findByHost(new ObjectId(hostId));
     }
 
     @Get(':id')

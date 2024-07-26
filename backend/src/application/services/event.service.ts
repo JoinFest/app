@@ -18,9 +18,12 @@ export class EventService {
             createEventDto.location,
             new ObjectId(createEventDto.hostId) // Utilisation de l'ID de l'hôte
         );
-        console.log(event);
         console.log(createEventDto);
         return await this.eventRepository.create(event);
+    }
+
+    async findByHost(hostId: ObjectId): Promise<Event[]> {
+        return await this.eventRepository.findByHost(hostId);
     }
 
     async findById(id: ObjectId): Promise<Event> {
