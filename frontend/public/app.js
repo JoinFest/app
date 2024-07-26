@@ -253,6 +253,66 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error loading event details:', error));
     }
+      // Fonction pour charger les événements statiques passés
+      function loadStaticPastEvents() {
+        const historyEventsList = document.getElementById('history-events-list');
+        if (historyEventsList) {
+            // Données statiques des événements passés
+            const pastEvents = [
+                {
+                    name: 'Événement Passé 1',
+                    date: '2023-06-15T18:00:00',
+                    location: 'Paris, France',
+                    description: 'Description de l\'événement passé 1.',
+                    image: './img/event1.jpg'
+                },
+                {
+                    name: 'Événement Passé 2',
+                    date: '2023-07-20T18:00:00',
+                    location: 'Lyon, France',
+                    description: 'Description de l\'événement passé 2.',
+                    image: './img/event2.jpg'
+                },
+                {
+                    name: 'Événement Passé 3',
+                    date: '2023-08-25T18:00:00',
+                    location: 'Marseille, France',
+                    description: 'Description de l\'événement passé 3.',
+                    image: './img/event3.jpg'
+                }
+            ];
+
+            pastEvents.forEach(event => {
+                const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                }).format(new Date(event.date));
+
+                const eventElement = document.createElement('div');
+                eventElement.classList.add('col-md-4', 'mb-4');
+                eventElement.innerHTML = `
+                    <div class="card h-100">
+                        <img src="${event.image}" class="card-img-top" alt="Image de l'événement">
+                        <div class="card-body">
+                            <h5 class="card-title">${event.name}</h5>
+                            <p class="card-text"><i class="fas fa-calendar-alt"></i> ${formattedDate}</p>
+                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
+                            <p class="card-text">${event.description}</p>
+                        </div>
+                    </div>`;
+                historyEventsList.appendChild(eventElement);
+            });
+        }
+    }
+
+    // Appel de la fonction pour charger les événements statiques passés si on est sur la page d'historique
+    if (document.getElementById('history-events-list')) {
+        loadStaticPastEvents();
+    }
 
 
 });
